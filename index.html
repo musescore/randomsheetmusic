@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="A random sheet music in MusicXML format generator">
+    <meta name="author" content="lasconic">
+    <link rel="icon" href="/images/favicon.ico">
+
+    <title>Random sheet music in MusicXML !</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/fonts/bravura.css">
+    <link rel="stylesheet" href="/css/slider.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/bootstrap-slider.js"></script>
+    <script src="/js/app.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Random sheet music</h1>
+      </div>
+      <form class="form-horizontal" action="/generate" method="post" accept-charset="utf-8">
+        <div class="form-group">
+          <label for="measureNb" class="col-sm-4 control-label">Number of measures</label>
+          <div class="col-sm-4">
+            <input id="measureNb" name="measureNb" class="form-control" value="32">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="timeSignature" class="col-sm-4 control-label">Time Signature</label>
+          <div class="col-sm-4">
+            <select id="timeSignature" name="timeSignature" class="form-control">
+              <option value="4/4">4/4</option>
+              <option value="3/4">3/4</option>
+              <option value="2/4">2/4</option>
+              <option value="12/8">12/8</option>
+              <option value="9/8">9/8</option>
+              <option value="6/8">6/8</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="sl-ambitus" class="col-xs-4 control-label">Ambitus</label>
+          <div class="col-xs-4">
+            <span id="amb-min">B3</span> <input type="text"  value="59,84" data-slider-min="36" data-slider-max="96" data-slider-step="1" data-slider-value="[59,84]" id="sl-ambitus" name="ambitus"> <span id="amb-max">C6</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="keySignature" class="col-sm-4 control-label">Key signature</label>
+          <div class="col-sm-4">
+            <select id="keySignature" name="keySignature" class="form-control">
+              <option value="-7">C♭ major / A♭ minor</option>
+              <option value="-6">G♭ major / E♭ minor</option>
+              <option value="-5">D♭ major / B♭ minor</option>
+              <option value="-4">A♭ major / F minor</option>
+              <option value="-3">E♭ major / C minor</option>
+              <option value="-2">B♭ major / G minor</option>
+              <option value="-1">F major / D minor</option>
+              <option value="0" selected>C major / A minor</option>
+              <option value="1">G major / E minor</option>
+              <option value="2">D major / B minor</option>
+              <option value="3">A major / F♯ minor</option>
+              <option value="4">E major / C♯ minor</option>
+              <option value="5">B major / G♯ minor</option>
+              <option value="6">F♯ major / D♯ minor</option>
+              <option value="7">C♯ major / A♯ minor</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" id="notes">
+          <div class="row">
+            <label class="control-label col-xs-offset-2 col-xs-2">Notes</label>
+          </div>
+          <div class="row">
+            <div class="col-xs-offset-4 col-xs-2">
+              <input id="check-note-0" class= "check-note" type="checkbox" checked="true">A
+            </div>
+            <div class="col-xs-2">
+              <input id="check-note-6" class= "check-note" type="checkbox" checked="true">D♯ / E♭
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-offset-4 col-xs-2">
+              <input id="check-note-1" class= "check-note" type="checkbox" checked="true">A♯ / B♭
+            </div>
+            <div class="col-xs-2">
+              <input id="check-note-7" class= "check-note" type="checkbox" checked="true">E
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-offset-4 col-xs-2">
+              <input id="check-note-2" class= "check-note" type="checkbox" checked="true">B
+            </div>
+            <div class="col-xs-2">
+              <input id="check-note-8" class= "check-note" type="checkbox" checked="true">F
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-offset-4 col-xs-2">
+              <input id="check-note-3" class= "check-note" type="checkbox" checked="true">C
+            </div>
+            <div class="col-xs-2">
+              <input id="check-note-9" class= "check-note" type="checkbox" checked="true">F♯ / G♭
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-offset-4 col-xs-2">
+              <input id="check-note-4" class= "check-note" type="checkbox" checked="true">C♯ / D♭
+            </div>
+            <div class="col-xs-2">
+              <input id="check-note-10" class= "check-note" type="checkbox" checked="true">G
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-offset-4 col-xs-2">
+              <input id="check-note-5" class= "check-note" type="checkbox" checked="true">D
+            </div>
+            <div class="col-xs-2">
+              <input id="check-note-11" class= "check-note" type="checkbox" checked="true">G♯ / A♭
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="maxLeap" class="col-sm-4 control-label">Max leap</label>
+          <div class="col-sm-4">
+            <select id="maxLeap" name="maxLeap" class="form-control">
+              <option value="nolimit">No Limit</option>
+              <option value="M2">Major Second</option>
+              <option value="M3">Major Third</option>
+              <option value="P5">Perfect Fourth</option>
+              <option value="P4">Perfect Fifth</option>
+              <option value="M6">Major Sixth</option>
+              <option value="M7">Major Seventh</option>
+              <option value="P8">Perfect Octave</option>
+            </select>
+          </div>
+          <div>
+            <label class="col-sm-offset-4 col-sm-4">
+              <input id="check-no-unison" name="nounison" type="checkbox"> No unison
+            </label>
+        </div>
+        </div>
+        <div class="form-group" id="durations">
+            <label class="col-sm-4 control-label ">Durations</label>
+        </div>
+        <div class="form-group" id="durations">
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-32" name="32nd" class= "check-duration" type="checkbox"> &#xE1BB
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-16" name="16th" class= "check-duration" type="checkbox" checked="true"> &#xE1B9
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-8" name="8th" type="checkbox" checked="true"> &#xE1B7
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-4" name="quarter" class= "check-duration" type="checkbox" checked="true"> &#xE1B5
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-2" name="half" class= "check-duration" type="checkbox" checked="true"> &#xE1B3
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-1" name="whole" class= "check-duration" type="checkbox" checked="true"> &#xE1B2
+            </label>
+        </div>
+
+        <div class="form-group" id="durations">
+            <label class="lbl-check-duration col-xs-offset-2 col-xs-2">
+              <input id="check-duration-16dot" name="16thdot" class= "check-duration" type="checkbox"> &#xE1B9 &#xE1C7
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-8dot" name="8thdot" type="checkbox"> &#xE1B7 &#xE1C7
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-4dot" name="quarterdot" class= "check-duration" type="checkbox" checked="true"> &#xE1B5 &#xE1C7
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-2" name="halfdot" class= "check-duration" type="checkbox" checked="true"> &#xE1B3 &#xE1C7
+            </label>
+            <label class="lbl-check-duration col-xs-2">
+              <input id="check-duration-1" name="wholedot" class= "check-duration" type="checkbox"> &#xE1B2 &#xE1C7
+            </label>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-offset-4 col-xs-6">
+            <button type="submit" id="generate" class="btn btn-primary">Download</button>
+          </div>
+        </div>
+      </form>
+
+    </div> <!--Container-->
+
+     <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Created by <a href="https://twitter.com/lasconic">@lasconic</a> with <a href="">Music21</a>. If you like this service, <a href="https://paypal.me/lasconic">please support it</a>.<br/> Edit the resulting MusicXML for free with <a href="https://musescore.org">MuseScore</a>.</p>
+      </div>
+    </footer>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

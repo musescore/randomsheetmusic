@@ -1,0 +1,23 @@
+application: randomsheetmusic-1055
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /css
+  static_dir: css
+
+- url: /js
+  static_dir: js
+
+- url: /favicon\.ico
+  static_files: images/favicon.ico
+  upload: images/favicon\.ico
+
+- url: /.*
+  script: randomsheetmusic.app
+
+libraries:
+- name: jinja2
+  version: latest

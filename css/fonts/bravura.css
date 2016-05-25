@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "BravuraBreve";
+    src: url("Bravura.eot");
+    src: url("Bravura-webfont.eot") format("embedded-opentype"),
+         url("Bravura.svg") format("svg"),
+         url("Bravura.woff") format("woff");
+    font-weight: 200;
+    font-style: normal;
+}
+
+
