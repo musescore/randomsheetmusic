@@ -1,4 +1,3 @@
-import webapp2
 import sys
 sys.path.insert(0, 'lib')
 from music21 import *
@@ -6,6 +5,7 @@ import random
 import urllib
 import jinja2
 import os
+import webapp2
 
 import zipfile
 import StringIO
